@@ -1,0 +1,119 @@
+<%= stylesheet_link_tag 'home' %>
+
+<div class="main-container">
+  <div class="nitk-header">
+    <div class="container">
+      <header class="d-flex justify-content-center py-3">
+        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page"><%= image_tag 'header.png' %></a></li>
+      </header>
+    </div>
+  </div>
+  <header class="d-flex justify-content-center py-3">
+    <div class="telephone-header">
+      ADMIT CARD GENERATOR
+    </div>
+  </header>
+
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">2 KAR ENGR COY NCC</h1>
+        <p class="lead text-body-secondary">एकता और अनुशासन <br> Unity and discipline</p>
+        <%= form_tag({ controller: 'home', action: 'parse_excel' }, multipart: true) do %>
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupFile01">Upload the excel sheet</label>
+            <%= file_field_tag 'excel_file', class:"form-control", id:"inputGroupFile01" %>
+          </div>
+          <%= submit_tag 'Generate Admit Cards', class: 'btn btn-danger my-2' %> <br>
+          <%= link_to 'Preview Admit Card', home_preview_path(format: :pdf), class: 'btn btn-primary my-2 active' %> <br>
+          <a href="#team" class="btn btn-info my-2">Team</a>
+       <% end %>
+       <% if flash[:error] %>
+         <div class="alert alert-danger mt-3" role="alert">
+           <%= flash[:error] %>
+         </div>
+       <% end %>
+       <% if defined?(@zip_file_path) && @zip_file_path.present? %>
+         <div class="alert alert-success mt-3" role="alert">
+           Admit cards generated successfully!
+           <%= link_to 'Download Admit Cards', @zip_file_path, class: 'btn btn-success my-2' %>
+         </div>
+       <% end %>
+     </div>
+   </div>
+ </section>
+
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+     <h1 class="fw-light">TEAM :</h1>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col" id="team">
+          <div class="card shadow-sm">
+            <center><%= image_tag 'anish.jpg', style:"height:280px;width:280px;" %></center>
+            <div class="card-body">
+              <p class="card-text">Anish Kumbhar</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" onclick="window.location.href='https://github.com/Shivyoddha'" class="btn btn-sm btn-dark">GitHub</button>
+                  <button type="button" class="btn btn-sm btn-primary">LinkedIn</button>
+                </div>
+                <small class="text-body-secondary">NITK Surathkal</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <center><%= image_tag 'Likitha.jpeg', style:"height:250px;width:250px;margin-top:12px;margin-bottom:18px;" %></center>
+            <div class="card-body">
+              <p class="card-text">Likkz</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" onclick="window.location.href='https://github.com/Shivyoddha'" class="btn btn-sm btn-dark">GitHub</button>
+                  <button type="button" class="btn btn-sm btn-primary">LinkedIn</button>
+                </div>
+                <small class="text-body-secondary">NITK Surathkal</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm">
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            <div class="card-body">
+              <p class="card-text">Tejashree</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" onclick="window.location.href='https://github.com/Shivyoddha'" class="btn btn-sm btn-dark">GitHub</button>
+                  <button type="button" class="btn btn-sm btn-primary">LinkedIn</button>
+                </div>
+                <small class="text-body-secondary">NITK Surathkal</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+
+<div class="container">
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+        <%= image_tag 'ncclogo.png', style:"width:50px;" %>
+      </a>
+      <span class="mb-3 mb-md-0 text-body-secondary">@ 2 KAR ENGR COY NCC NITK</span>
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3"><a class="text-body-secondary" href="#"><i class="fa-brands fa-linkedin fa-beat fa-2x  text-primary"></i></li>
+      <li class="ms-3"><a class="text-body-secondary" href="#"><i class="fa-brands fa-instagram fa-bounce fa-2x  text-danger"></i></a></li>
+      <li class="ms-3"><a class="text-body-secondary" href="#"><i class="fa-brands fa-github fa-flip fa-2x text-dark"></i></a></li>
+    </ul>
+  </footer>
+</div>
