@@ -14,6 +14,8 @@
       font-family: Arial, sans-serif;
       font-size: 12px;
       line-height: 1.5;
+      letter-spacing: 2px;
+      word-spacing: 5px;
     }
 
     h1 {
@@ -21,6 +23,7 @@
       font-size: 16px;
       font-weight: bold;
       margin-bottom: 20px;
+      letter-spacing: 3px;
     }
 
     table {
@@ -52,7 +55,13 @@
       padding: 3px;
       margin: 0 5px;
       text-align: center;
-      width: 30px; /* Adjust width as needed */
+      width: 30px;
+      height: 30px;
+      min-height: 20px;
+    }
+
+    .empty-date {
+      visibility: hidden;
     }
 
     .two-column:after {
@@ -62,12 +71,12 @@
     }
 
     .left-column {
-      width: 60%; /* Adjust width as needed */
+      width: 60%;
       float: left;
     }
 
     .right-column {
-      width: 30%; /* Adjust width as needed */
+      width: 30%;
       float: right;
     }
 
@@ -102,7 +111,7 @@
      <table border="0" class="custom-table">
       <tr>
         <td>1. Unit :</td>
-        <td><u><%= row[1] %></u></td>
+        <td> 2 KAR ENGR COY NCC NITK</td>
       </tr>
       <tr>
         <td>2. (Attach extension paper, if applicable):</td>
@@ -110,15 +119,15 @@
       </tr>
       <tr>
         <td class="wide-column">3. Regimental No:</td>
-        <td style="width: 20%;"><u><%= row[2] %></u></td>
+        <td style="width: 20%;"><%= row[1] %></td>
       </tr>
       <tr>
         <td class="wide-column">4. Rank:</td>
-        <td style="width: 20%;"><u><%= row[3] %></u></td>
+        <td style="width: 20%;"><%= row[2] %></td>
       </tr>
       <tr>
         <td class="wide-column">5. Name in English (Capital letters):<br> (As per High School Certificate) </td>
-        <td style="width: 20%;"><u><%= row[4] %></u></td>
+        <td style="width: 20%;"><%= row[3] %></td>
       </tr>
      </table>
     </div>
@@ -131,98 +140,111 @@
   </div>
 
 
-<table border="0">
+<table border="0" class="custom-table">
     <tr>
       <td>6. Date of Birth:</td>
       <td>
-        <% date_of_birth = row[5].to_s.split('-') %>
+        <% date_of_birth = row[6].to_s.split('/') %>
+        <span class="date-box"><%= date_of_birth[0]&.[](0) %></span>
+        <span class="date-box"><%= date_of_birth[0]&.[](1) %></span>
+        <span class="date-box" style="border:0px;"></span>
+        <span class="date-box"><%= date_of_birth[1]&.[](0) %></span>
+        <span class="date-box"><%= date_of_birth[1]&.[](1) %></span>
+        <span class="date-box" style="border:0px;"></span>
+
         <span class="date-box"><%= date_of_birth[2]&.[](0) %></span>
         <span class="date-box"><%= date_of_birth[2]&.[](1) %></span>
-        <span class="date-box" style="border:0px;"></span>
-        <span class="date-box"><%= date_of_birth[1] == 1 ? '0' : '' %><%= date_of_birth[1] %></span>
-        <span class="date-box" style="border:0px;"></span>
-        <span class="date-box"><%= date_of_birth[0]== 1 ? '0' : '' %><%= date_of_birth[0]&.[](0) %></span>
-        <span class="date-box"><%= date_of_birth[0]&.[](1) %></span>
-        <span class="date-box"><%= date_of_birth[0]&.[](2) %></span>
-        <span class="date-box"><%= date_of_birth[0]&.[](3) %></span>
+        <span class="date-box"><%= date_of_birth[2]&.[](2) %></span>
+        <span class="date-box"><%= date_of_birth[2]&.[](3) %></span>
         <span class="date-box" style="border:0px;"></span>
       </td>
     </tr>
     <tr>
       <td>7. Father's Name:        (As per High School Certificate):</td>
-      <td><u><%= row[6] %></u></td>
+      <td><%= row[5] %></td>
     </tr>
     <tr>
       <td>8. School/College & Class in which studying:</td>
-      <td><u><%= row[7] %></u></td>
+      <td><%= row[4] %></td>
     </tr>
     <tr>
       <td>9. Year of passing Cert B if applicable: <br> (Attach photocopy of B Certificate) </td>
-      <td><u><%= row[8] %></u></td>
+      <td>&nbsp;</td>
     </tr>
     <tr>
       <td>10. Whether Fresh/Failure: <br> (If Failure, details of previous B Certificate exam) </td>
-      <td><u><%= row[10] %></u>
+      <td>Fresh</td>
     </tr>
-    <table class="custom-table">
-    <tr>
-      <td colspan="2">11. Attendance in parade</td>
-      <td class="center" style="width: 20%;">1st Yr</td>
-      <td class="center" style="width: 20%;">2nd Yr</td>
-      <td class="center" style="width: 20%;">3rd Yr</td>
-      <td class="center" style="width: 20%;">Total</td>
-    </tr>
-    <tr>
-      <td colspan="2"></td>
-      <td>
-          <span class="date-box">x</span>
-          <span class="date-box">x</span>
-          <span class="date-box">%</span>
-      </td>
-      <td>
-          <span class="date-box">x</span>
-          <span class="date-box">x</span>
-          <span class="date-box">%</span>
-      </td>
-      <td>
-          <span class="date-box">x</span>
-          <span class="date-box">x</span>
-          <span class="date-box">%</span>
-      </td>
-      <td>
-          <span class="date-box">x</span>
-          <span class="date-box">x</span>
-          <span class="date-box">%</span>
-      </td>
-    </tr>
-  </table>
+  <table class="custom-table">
+  <tr>
+    <td colspan="2">11. Attendance in parade</td>
+    <td class="center" style="width: 22%;">1st Yr</td>
+    <td class="center" style="width: 22%;">2nd Yr</td>
+    <td class="center" style="width: 22%;">Total</td>
+  </tr>
+  <tr>
+    <td style="border-right:0px;">
+        <span style=""></span>
+    </td>
+    <td style="border-left:0px;">
+    </td>
+    <td>
+      <% if row[20].present? &&  row[20] == 100 %>
+      <span class="date-box">1</span>
+      <span class="date-box">0</span>
+      <span class="date-box">0</span>
+      <span class="date-box">%</span>
+      <% elsif row[20].present? %>
+        <span class="date-box"><%= (row[20]/10).to_i %></span>
+        <span class="date-box"><%= (row[20]%10).to_i %></span>
+        <span class="date-box">%</span>
+      <% else %>
+      <span class="date-box">&nbsp;</span>
+      <span class="date-box">&nbsp;</span>
+      <span class="date-box">%</span>
+      <% end %>
+    </td>
+    <td>
+      <% if row[20].present? &&  row[20] == 100 %>
+      <span class="date-box">1</span>
+      <span class="date-box">0</span>
+      <span class="date-box">0</span>
+      <span class="date-box">%</span>
+      <% elsif row[20].present? %>
+        <span class="date-box"><%= (row[20]/10).to_i %></span>
+        <span class="date-box"><%= (row[20]%10).to_i %></span>
+        <span class="date-box">%</span>
+      <% else %>
+      <span class="date-box">&nbsp;</span>
+      <span class="date-box">&nbsp;</span>
+      <span class="date-box">%</span>
+      <% end %>
+    </td>
+    <td>
+        <span class="date-box">&nbsp;</span>
+        <span class="date-box">&nbsp;</span>
+        <span class="date-box">&nbsp;</span>
+    </td>
+  </tr>
+</table>
 
   <table class="custom-table">
     <tr>
       <td colspan="2">12. Detail or camps attended (Attach photocopy of camp No/Name of camp Attended Date/Month/Yr Location (a) (b)</td>
-      <td style="width: 20%;">Camp Details 1</td>
-      <td style="width: 20%;"><u><%= row[11] %></u></td>
-      <td style="width: 20%;">Date</td>
-      <td style="width: 20%;">Location</td>
-    </tr>
-    <tr>
-      <td colspan="2"></td>
-      <td>Camp Details 2</td>
-      <td>Name</td>
-      <td>Date</td>
-      <td>Location</td>
+      <td style="width: 20%;" class="camp-details-row">Camp Details 1</td>
+      <td style="width: 20%;" class="camp-details-row"><%= row[11] %></td>
+      <td style="width: 20%;" class="camp-details-row"><%= row[12] %></td>
+      <td style="width: 20%;" class="camp-details-row"><%= row[13] %></td>
     </tr>
   </table>
   <table border="0">
     <tr>
       <td>13. Home/Institution Address for postal dispatch of Certificate:</td>
-      <td><u><%= row[12] %></u></td>
+      <td>NH 66, Srinivasnagar, Surathkal, Mangalore, Karnataka - 575 025</td>
     </tr>
   </table>
 
-<br>
 <hr color="grey">
-<br>
 
 <h2><b>Note :</b></h2>
 <p size="20px">1. Cadets must check particulars carefully and correction if any, be brought to the notice of OC immediately <br>
@@ -247,7 +269,5 @@ signatures of all concerned. <br>
     <td class="center">(Name & Stamp)</td>
   </tr>
 </table>
-
-<br>
 
 <h1><u>Approved/ Not Approved</u></h1>

@@ -13,8 +13,8 @@ Rails.application.configure do
 
   # Show full error reports.
   config.consider_all_requests_local = true
-  
-  config.hosts << "e8de-103-158-138-41.ngrok-free.app"
+
+  config.hosts << "4260-2401-4900-33be-6c60-d9c3-ead7-ffd4-7e50.ngrok-free.app"
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.

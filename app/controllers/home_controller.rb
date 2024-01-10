@@ -56,7 +56,7 @@ class HomeController < ApplicationController
       Dir.mkdir(pdf_dir) unless Dir.exist?(pdf_dir)
 
       # Iterate through all rows starting from row 2
-      (2..sheet.last_row).each do |row_number|
+      (3..sheet.last_row).each do |row_number|
         row = sheet.row(row_number)
         pdf_content = WickedPdf.new.pdf_from_string(
           render_to_string(
@@ -68,7 +68,7 @@ class HomeController < ApplicationController
         )
 
         # Save the PDF to a file
-        pdf_path = File.join(pdf_dir, "Admit_card_#{row_number}.pdf")
+        pdf_path = File.join(pdf_dir, "Admit_card_B_#{row_number}.pdf")
         File.open(pdf_path, 'wb') { |file| file << pdf_content }
         pdf_paths << pdf_path
       end
